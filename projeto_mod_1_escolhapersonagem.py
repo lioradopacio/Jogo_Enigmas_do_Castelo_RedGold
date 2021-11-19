@@ -49,29 +49,30 @@ def print_boas_vindas ():
 
 
 def personagens ():
-    personagem = int(input('\nDigite o número corresponder ao personagem que deseja:'))
+    personagem = input('\nDigite o número corresponder ao personagem que deseja:')
+    lista_personagem = ['1', '2', '3']
 
-    if (personagem == 1):
+    if (personagem in lista_personagem) and (personagem == '1'):
         print('\nHum...')
         time.sleep(0.5)
         print('Você é dos times dos corajosos, então? Vamos lá!')
         projeto_mod_1_vamparypota.jogar1()
 
-    elif (personagem == 2):
+    elif (personagem in lista_personagem) and (personagem == '2'):
         print('\nBom saber...')
         time.sleep(0.5)
         print('Já diziam por aí, malandro é malandro e mané é mané! Vamos nessa!')
         projeto_mod_1_vampesley.jogar1()
-    elif (personagem == 3):
+
+    elif (personagem in lista_personagem) and (personagem == '3'):
         print('\nDas profundezas bibliotecas então...')
         time.sleep(0.5)
         print('Uma mente limitada é aquela que acredita que o conhecimento não é necessário. Nerd assumido(a), vamos ganhar esse jogo, logo!')
         projeto_mod_1_vampione.jogar1()
+
     else:
         print('Opção não disponível!\n')
-        lista_personagem = [1, 2, 3]
-        while personagem != lista_personagem:
-            print(personagem)
+        personagens()
 
 
 if(__name__ == '__main__'):
