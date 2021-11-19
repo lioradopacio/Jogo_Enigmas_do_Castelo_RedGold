@@ -4,6 +4,8 @@ import time
 from termcolor import cprint
 import pyfiglet
 
+nome_personagem = 'Vampione'
+lista_resp = ['1', '2']
 
 def jogar1():
     explicacao_missao_vampione()
@@ -47,7 +49,7 @@ def explicacao_encontro_gemeas():
     time.sleep(1)
     print('2. puxar conversa com elas')
     cprint('-'* 80, 'red')
-    interacao_menininha()
+    interacao_gemeas()
 
 
 def explicacao_missao_vampione():
@@ -73,23 +75,24 @@ def explicacao_missao_vampione():
     cprint('-'* 80, 'red')
     resposta_abrir_porta_nao_entrou()
 
-nome_personagem = 'Vampione'
-
 
 def jogar_novamente():
-    jogar_novamente = input('\nDeseja jogar novamente? [S/N]:')
-    if (jogar_novamente.upper().strip() == 'S'):
+    resp_jogar_novamente = input('\nDeseja jogar novamente? [S/N]:')
+    if (resp_jogar_novamente.upper().strip() == 'S'):
         projeto_mod_1_escolhapersonagem.escolha_personagem()
-    elif(jogar_novamente.upper().strip() == 'N'):
+    elif(resp_jogar_novamente.upper().strip() == 'N'):
         print('Até a próxima!')
+    else:
+        print('Digite uma resposta válida!')
+        jogar_novamente()
 
 
 
 def resp_desistiu_entrar():
     condicao = True
     while condicao:
-        resp_desistiu = int(input('Digite sua escolha [1 ou 2]:'))
-        if (resp_desistiu == 1) or (resp_desistiu == 2):
+        resp_desistiu = input('Digite sua escolha [1 ou 2]:')
+        if (resp_desistiu == '1') or (resp_desistiu == '2'):
                 print('\nAo se aproximar, ele oferece um copo de água, pois fazia um calor danado...')
                 time.sleep(2)
                 print('Porém a água tinha extrato de alho, ao tomar um gole da água, imediatamente, você começou a passar mal e morreu.\n')
@@ -120,16 +123,16 @@ def explicacao_resp_enigma_porta():
 
     
 def resp_enigma_porta():    
-    resp_enigma = int(input('Digite sua resposta [1 ou 2]:'))
+    resp_enigma = input('Digite sua resposta [1 ou 2]:')
 
-    if resp_enigma == 1:
+    if (resp_enigma in lista_resp) and (resp_enigma == '1'):
         print('\nSua inteligência é o que te destaca, sempre.')
         time.sleep(1)
         print('Parabéns {}, pois quem não dispõe de tal destreza pagou com a vida o erro do enigma.'.format(nome_personagem))
         explicacao_encontro_gemeas()
 
     else:
-        if resp_enigma == 2:
+        if (resp_enigma in lista_resp) and (resp_enigma == '2'):
             print('\nA porta é amaldiçoada e quem erra o enigma paga com a vida.')
             cprint('-'* 80, 'red')
             time.sleep(1)
@@ -142,8 +145,9 @@ def resp_enigma_porta():
 
 
 def resposta_abrir_porta_nao_entrou ():
-    resposta_pergunta_abrir_porta = int(input('Digite sua escolha [1 ou 2]:'))
-    if (resposta_pergunta_abrir_porta == 1):
+    resposta_pergunta_abrir_porta = input('Digite sua escolha [1 ou 2]:')
+
+    if (resposta_pergunta_abrir_porta in lista_resp) and (resposta_pergunta_abrir_porta == '1'):
         print('\nSempre curiosa, não é mesmo {}?\n'.format(nome_personagem))
         time.sleep(1)
         print('Ao caminhar para longe da porta, você se dá conta que está sendo observada...')
@@ -157,7 +161,7 @@ def resposta_abrir_porta_nao_entrou ():
         print('2. vai até ele dar um sermão pela 1458ª vez.\n')
         cprint('-'* 80, 'red')
         resp_desistiu_entrar()
-    elif (resposta_pergunta_abrir_porta == 2):
+    elif (resposta_pergunta_abrir_porta in lista_resp) and (resposta_pergunta_abrir_porta == '2'):
             explicacao_resp_enigma_porta()
     else:
         print('Resposta inválida')
@@ -165,28 +169,30 @@ def resposta_abrir_porta_nao_entrou ():
 
 
 
-def interacao_menininha ():
-    resp_pergunta_menininho = int(input('Digite o número correspondente a ação que deseja:'))
-    if (resp_pergunta_menininho == 1):
+def interacao_gemeas ():
+    resp_pergunta_gemeas = input('Digite o número correspondente a ação que deseja:')
+    
+    if (resp_pergunta_gemeas in lista_resp) and (resp_pergunta_gemeas == '1'):
         print('\nElas apontam para uma porta aberta, que lembrava uma biblioteca, mas não disseram uma palavra.')
         explicacao_biblioteca_escrito_sangue()
 
-    elif (resp_pergunta_menininho == 2):
+    elif (resp_pergunta_gemeas in lista_resp) and (resp_pergunta_gemeas == '2'):
         print('...')
         time.sleep(2)
         print('após um longo período de silêncio')
         time.sleep(1)
         print('você se lembra que parte dos boatos também diziam que elas não responde perguntas diretas sobre o castelo...\n')
-        interacao_menininha ()
+        interacao_gemeas ()
     
     else:
         print('Resposta inválida!')
-        interacao_menininha()
+        interacao_gemeas()
 
 
 
 def enimga_palavra_biblioteca():
     resp_enigma_palavra = input('\nDigite sua resposta:')
+
     if (resp_enigma_palavra.lower().strip() == 'tempo'):
         print('\nFantástico! A resposta está correta!')
         time.sleep(1)
@@ -203,6 +209,7 @@ def enimga_palavra_biblioteca():
 
 def enimga_sala_jantar():
     resp_enigma_palavra = input('Digite a resposta:')
+    
     if (resp_enigma_palavra.lower().strip() == 'nome'):
         print('\nIHULLLLLLLLL!')
         time.sleep(1)
